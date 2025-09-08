@@ -1,49 +1,38 @@
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
-  max-width: 500px;
-  margin: auto;
-  line-height: 1.5;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-form {
+  background: #111;
+  color: #fff;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-input[type="tel"] {
+.container {
+  width: 300px;
+  padding: 20px;
+  background: #222;
+  border-radius: 10px;
+}
+
+input {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.checkbox {
-  margin-bottom: 15px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: none;
 }
 
 button {
-  padding: 12px;
-  background: #4A90E2;
+  width: 100%;
+  padding: 10px;
+  background: #444;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
 }
 
 button:hover {
-  background: #357ABD;
-}
-
-#message {
-  margin-top: 15px;
-  text-align: center;
-  font-size: 14px;
+  background: #666;
 }
