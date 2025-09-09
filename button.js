@@ -1,0 +1,11 @@
+let btn = document.createElement("button");
+btn.innerText = "👻 GradeGhost";
+btn.style.position = "fixed";
+btn.style.bottom = "20px";
+btn.style.right = "20px";
+btn.style.padding = "10px 15px";
+btn.style.fontSize = "16px";
+btn.style.zIndex = "99999";
+btn.onclick = () => alert("👻 Button clicked!");
+document.body.appendChild(btn);
+console.log("🖱️ Button added to page!");
