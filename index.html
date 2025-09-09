@@ -1,42 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GradeGhost Auth</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Problem Inspector</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { margin: 0; padding: 2rem; background: #0b0b0c; color: #f3f3f4; }
+    .card { max-width: 800px; margin: 0 auto; background: #141417; border: 1px solid #2a2a2e; border-radius: 16px; padding: 1.5rem; }
+    h1 { margin: 0 0 1rem; font-size: 1.4rem; }
+    .grid { display: grid; gap: .75rem; }
+    .row { display: grid; grid-template-columns: 160px 1fr; gap: .75rem; align-items: start; }
+    .key { color: #b6b6c2; }
+    .val { word-break: break-all; background: #0f0f12; border: 1px solid #2a2a2e; border-radius: 12px; padding: .5rem .75rem; }
+    .muted { color: #9a9aa4; font-size: .9rem; margin-top: 1rem; }
+    code { background: #0f0f12; padding: .2rem .35rem; border-radius: 6px; }
+    a { color: #82b1ff; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>GradeGhost</h1>
-    <div id="userStatus"></div>
-
-    <div id="authForms">
-      <div id="signupForm">
-        <h2>Signup</h2>
-        <input type="email" id="signupEmail" placeholder="Email" />
-        <input type="password" id="signupPassword" placeholder="Password" />
-        <button id="submitSignup">Create Account</button>
-      </div>
-
-      <div id="loginForm">
-        <h2>Login</h2>
-        <input type="email" id="loginEmail" placeholder="Email" />
-        <input type="password" id="loginPassword" placeholder="Password" />
-        <button id="submitLogin">Login</button>
-      </div>
+  <div class="card">
+    <h1>Problem Inspector</h1>
+    <div class="grid">
+      <div class="row"><div class="key">Problem ID</div><div class="val" id="pid">—</div></div>
+      <div class="row"><div class="key">Page Title</div><div class="val" id="ptitle">—</div></div>
+      <div class="row"><div class="key">Source URL</div><div class="val" id="purl">—</div></div>
+      <div class="row"><div class="key">When</div><div class="val" id="when">—</div></div>
     </div>
+    <p class="muted">
+      This page only displays data sent via the query string:
+      <code>?p=&lt;problemId&gt;&amp;title=&lt;title&gt;&amp;url=&lt;encodedUrl&gt;</code>
+    </p>
   </div>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
-  <!-- Firebase Init -->
-  <script src="firebase-init.js"></script>
-
-  <!-- App Logic -->
-  <script src="auth.js"></script>
+  <script>
+    const qp = new URLSearchParams(location.search);
+    const get = k => {
+      const v = qp.get(k);
+      return v && v.trim() ? v : "—";
+    };
+    document.getElementById('pid').textContent   = get('p');
+    document.getElementById('ptitle').textContent= get('title');
+    document.getElementById('purl').textContent  = get('url');
+    document.getElementById('when').textContent  = new Date().toLocaleString();
+  </script>
 </body>
 </html>
